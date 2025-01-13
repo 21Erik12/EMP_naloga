@@ -44,7 +44,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
     val navItemList = listOf(
         NavItem("Home", Icons.Default.Home),
         NavItem("Add", Icons.Default.Add),
-        NavItem("Statistics", Icons.Default.Info),
+        NavItem("Exercises", Icons.Default.Info),
         NavItem("Profile", Icons.Default.Person),
     )
 
