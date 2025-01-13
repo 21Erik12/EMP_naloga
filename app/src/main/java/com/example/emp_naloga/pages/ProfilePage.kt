@@ -17,7 +17,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -44,7 +43,6 @@ fun ProfilePage(modifier: Modifier = Modifier) {
             textAlign = TextAlign.Center
         )
 
-        // Username input
         BasicTextField(
             value = username.value,
             onValueChange = { username.value = it },
@@ -63,7 +61,6 @@ fun ProfilePage(modifier: Modifier = Modifier) {
             }
         )
 
-        // Password input with dots
         BasicTextField(
             value = password.value,
             onValueChange = { password.value = it },
@@ -84,7 +81,6 @@ fun ProfilePage(modifier: Modifier = Modifier) {
             }
         )
 
-        // Login button
         Button(
             onClick = { isLoggedIn.value = true },
             modifier = Modifier
@@ -94,7 +90,6 @@ fun ProfilePage(modifier: Modifier = Modifier) {
             Text(text = "Prijava", fontSize = 20.sp)
         }
 
-        // Welcome message
         if (isLoggedIn.value) {
             Text(
                 text = "Pozdravljeni ${username.value}!",
