@@ -22,10 +22,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun ProfilePage(modifier: Modifier = Modifier) {
-    val username = remember { mutableStateOf("") }
-    val password = remember { mutableStateOf("") }
-    val isLoggedIn = remember { mutableStateOf(false) }
+fun ProfilePage(
+    isLoggedIn: Boolean,
+    username: String,
+    onLogin: (String) -> Unit,
+    onLogout: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    val tempUsername = remember { mutableStateOf("") }
+    val tempPassword = remember { mutableStateOf("") }
 
     Column(
         modifier = modifier
@@ -34,71 +39,81 @@ fun ProfilePage(modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
-            text = "Prijava",
-            style = MaterialTheme.typography.headlineMedium,
-            fontWeight = FontWeight.Bold,
-            fontSize = 28.sp,
-            modifier = Modifier.padding(bottom = 24.dp),
-            textAlign = TextAlign.Center
-        )
-
-        BasicTextField(
-            value = username.value,
-            onValueChange = { username.value = it },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp),
-            decorationBox = { innerTextField ->
-                if (username.value.isEmpty()) {
-                    Text(
-                        text = "Uporabniško ime",
-                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
-                        fontSize = 18.sp
-                    )
-                }
-                innerTextField()
-            }
-        )
-
-        BasicTextField(
-            value = password.value,
-            onValueChange = { password.value = it },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp),
-            visualTransformation = PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions.Default, // Dodano za tipkovnico za gesla
-            decorationBox = { innerTextField ->
-                if (password.value.isEmpty()) {
-                    Text(
-                        text = "Geslo",
-                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
-                        fontSize = 18.sp
-                    )
-                }
-                innerTextField()
-            }
-        )
-
-        Button(
-            onClick = { isLoggedIn.value = true },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 16.dp)
-        ) {
-            Text(text = "Prijava", fontSize = 20.sp)
-        }
-
-        if (isLoggedIn.value) {
+        if (!isLoggedIn) {
             Text(
-                text = "Pozdravljeni ${username.value}!",
+                text = "Prijava",
+                style = MaterialTheme.typography.headlineMedium,
+                fontWeight = FontWeight.Bold,
+                fontSize = 28.sp,
+                modifier = Modifier.padding(bottom = 24.dp),
+                textAlign = TextAlign.Center
+            )
+
+            BasicTextField(
+                value = tempUsername.value,
+                onValueChange = { tempUsername.value = it },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp),
+                decorationBox = { innerTextField ->
+                    if (tempUsername.value.isEmpty()) {
+                        Text(
+                            text = "Uporabniško ime",
+                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
+                            fontSize = 18.sp
+                        )
+                    }
+                    innerTextField()
+                }
+            )
+
+            BasicTextField(
+                value = tempPassword.value,
+                onValueChange = { tempPassword.value = it },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp),
+                visualTransformation = PasswordVisualTransformation(),
+                keyboardOptions = KeyboardOptions.Default,
+                decorationBox = { innerTextField ->
+                    if (tempPassword.value.isEmpty()) {
+                        Text(
+                            text = "Geslo",
+                            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
+                            fontSize = 18.sp
+                        )
+                    }
+                    innerTextField()
+                }
+            )
+
+            Button(
+                onClick = {
+                    onLogin(tempUsername.value)
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 16.dp)
+            ) {
+                Text(text = "Prijava", fontSize = 20.sp)
+            }
+        } else {
+            Text(
+                text = "Pozdravljeni $username!",
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.Medium,
                 fontSize = 22.sp,
                 modifier = Modifier.padding(top = 16.dp),
                 textAlign = TextAlign.Center
             )
+            Button(
+                onClick = {
+                    onLogout()
+                },
+                modifier = Modifier.padding(top = 16.dp)
+            ) {
+                Text(text = "Odjava")
+            }
         }
     }
 }

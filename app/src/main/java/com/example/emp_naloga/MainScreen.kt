@@ -38,6 +38,8 @@ fun MainScreen(modifier: Modifier = Modifier) {
     var currentWorkoutId by rememberSaveable { mutableStateOf<Int?>(null) }
     var selectedWorkout by remember { mutableStateOf<Workout?>(null) }
     val viewModel = remember { WorkoutViewModel() }
+    var isLoggedIn by rememberSaveable { mutableStateOf(false) }
+    var username by rememberSaveable { mutableStateOf("") }
 
     val navItemList = listOf(
         NavItem("Home", Icons.Default.Home),
@@ -116,7 +118,20 @@ fun MainScreen(modifier: Modifier = Modifier) {
                     }
                 )
                 2 -> StatisticsPage()
-                3 -> ProfilePage()
+                3 -> ProfilePage(
+                    isLoggedIn = isLoggedIn,
+                    username = username,
+                    onLogin = { newUsername ->
+                        isLoggedIn = true
+                        username = newUsername
+                        selectedIndex = 0
+                    },
+                    onLogout = {
+                        isLoggedIn = false
+                        username = ""
+                    },
+                    modifier = Modifier.padding(innerPadding)
+                )
             }
         }
     }
