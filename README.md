@@ -1,5 +1,6 @@
-Workout Logger – EMP projekt
-Avtor: Jakob Simčič (63220292)
+# Workout Logger – EMP projekt
+Avtorji:
+## Jakob Simčič (63220292)
 
 Opis
 Mobilna aplikacija za beleženje fitnes treningov in vaj. Uporabnik izbere del telesa, vnese vaje (ime, teža, ponovitve) in spremlja svoj napredek.
