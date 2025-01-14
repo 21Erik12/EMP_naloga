@@ -25,9 +25,14 @@ class ExerciseViewModel : ViewModel() {
                     name = name,
                     weight = weight,
                     repetitions = repetitions,
-                    workoutId = workoutId
+                    workoutId = workoutId,
+
                 )
+
+
             )
+
+
         }
     }
 

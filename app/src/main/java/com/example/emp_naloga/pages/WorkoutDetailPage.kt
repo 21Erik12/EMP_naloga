@@ -25,7 +25,7 @@ fun WorkoutDetailPage(
     modifier: Modifier = Modifier
 ) {
     val exerciseViewModel = remember { ExerciseViewModel() }
-    val exercises by exerciseViewModel.getExercisesForWorkout(workout.id).observeAsState(listOf())
+    val vadbe by exerciseViewModel.getExercisesForWorkout(workout.id).observeAsState(listOf())
 
     Column(
         modifier = modifier
@@ -40,18 +40,15 @@ fun WorkoutDetailPage(
         }
 
         Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 16.dp)
+            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
         ) {
             Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
+                modifier = Modifier.fillMaxWidth().padding(16.dp)
             ) {
                 Text(
                     text = workout.title,
                     style = MaterialTheme.typography.headlineMedium,
+
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
                 Text(
@@ -81,7 +78,7 @@ fun WorkoutDetailPage(
             modifier = Modifier.padding(vertical = 16.dp)
         )
 
-        if (exercises.isEmpty()) {
+        if (vadbe.isEmpty()) {
             Text(
                 text = "No exercises added yet",
                 style = MaterialTheme.typography.bodyMedium,
@@ -91,11 +88,11 @@ fun WorkoutDetailPage(
             LazyColumn(
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                items(exercises) { exercise ->
-                    ExerciseDetailItem(
-                        exercise = exercise,
+                items(vadbe) { vadba ->
+                    ExerciseI(
+                        vadba = vadba,
                         onDelete = {
-                            exerciseViewModel.deleteExercise(exercise.id)
+                            exerciseViewModel.deleteExercise(vadba.id)
                         }
                     )
                 }
@@ -105,38 +102,41 @@ fun WorkoutDetailPage(
 }
 
 @Composable
-private fun ExerciseDetailItem(
-    exercise: Exercise,
-    onDelete: () -> Unit
+private fun ExerciseI(
+    vadba: Exercise,
+    onDelete: () ->Unit
 ) {
+
     Card(
+
         modifier = Modifier.fillMaxWidth()
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
+            modifier = Modifier.fillMaxWidth().padding(17.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
+
         ) {
             Column(
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = exercise.name,
+                    text = vadba.name,
                     style = MaterialTheme.typography.titleMedium
                 )
+
                 Text(
-                    text = "${exercise.weight}kg × ${exercise.repetitions} reps",
+                    text = "${vadba.weight}kg × ${vadba.repetitions} reps",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
+
             IconButton(onClick = onDelete) {
+
                 Icon(
                     painter = painterResource(id = R.drawable.baseline_delete_24),
                     contentDescription = "Delete",
-                    tint = MaterialTheme.colorScheme.error
                 )
             }
         }

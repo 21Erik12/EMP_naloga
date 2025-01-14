@@ -9,12 +9,13 @@ import androidx.activity.enableEdgeToEdge
 import com.example.emp_naloga.ui.theme.EMP_NalogaTheme
 
 class MainActivity : ComponentActivity() {
-    private val tag = "MainActivity"
-    private var startTime: Long = 0
+    private val kje = "MainActivity"
+
+    private var zacetekcas: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(tag, "onCreate called")
+        Log.d(kje, "onCreate check")
         enableEdgeToEdge()
         setContent {
             EMP_NalogaTheme {
@@ -25,19 +26,15 @@ class MainActivity : ComponentActivity() {
 
     override fun onStart() {
         super.onStart()
-        startTime = SystemClock.elapsedRealtime()
-        Log.d(tag, "on start - starting timer")
+        zacetekcas = SystemClock.elapsedRealtime()
+        Log.d(kje, "on start - starting timer check")
     }
-
-
     override fun onStop() {
-        val currentTime = SystemClock.elapsedRealtime()
-        val timeElapsed = currentTime - startTime
+        val trenutnicas = SystemClock.elapsedRealtime()
+        val zminusz = trenutnicas - zacetekcas
         super.onStop()
-        Log.d(tag, "Time in app: ${formatTime(timeElapsed)}")
+        Log.d(kje, "Time in app: ${formatTime(zminusz)}")
     }
-
-
     private fun formatTime(timeInMillis: Long): String {
         val second = (timeInMillis / 1000) % 60
         val minute = (timeInMillis / (1000 * 60)) % 60

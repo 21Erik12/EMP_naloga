@@ -17,7 +17,8 @@ class MainApplication : Application() {
             WorkoutDatabase::class.java,
             WorkoutDatabase.NAME
         )
-//           .fallbackToDestructiveMigration() //TO TREBA IZBRISAT PREDEN ODDAMO
+
+            .fallbackToDestructiveMigration()
             .build()
     }
 }

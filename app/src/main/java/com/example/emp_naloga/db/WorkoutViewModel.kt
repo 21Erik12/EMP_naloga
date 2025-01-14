@@ -15,6 +15,7 @@ import java.util.Date
 class WorkoutViewModel : ViewModel() {
 
     val WorkoutDao = MainApplication.workoutDatabase.getWorkoutDao()
+
     val workoutList : LiveData<List<Workout>> = WorkoutDao.getAllWorkout()
 
     @RequiresApi(Build.VERSION_CODES.O)

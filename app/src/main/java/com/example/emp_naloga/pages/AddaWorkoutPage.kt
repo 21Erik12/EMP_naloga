@@ -50,59 +50,60 @@ fun AddaWorkoutPage(
     currentWorkoutId: Int?,
     onNavigateToExercise: (Int) -> Unit
 ) {
-    var titleText by remember { mutableStateOf("") }
-    var weightText by remember { mutableStateOf("") }
+    var ImeText by remember { mutableStateOf("") }
+    var TezaText by remember { mutableStateOf("") }
     var localCurrentWorkoutId by remember(currentWorkoutId) { mutableStateOf(currentWorkoutId) }
-    var savedWorkoutTitle by remember { mutableStateOf("") }
-    var savedWorkoutWeight by remember { mutableStateOf("") }
-    var isWorkoutCreated by remember { mutableStateOf(false) }
+    var ShranjenWorkoutIme by remember { mutableStateOf("") }
+    var ShranjenWorkoutTeza by remember { mutableStateOf("") }
+    var workoutnarjen by remember { mutableStateOf(false) }
 
 
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp),
+        modifier = Modifier.fillMaxWidth().padding(8.dp),
+
     ) {
         Text(
             text = "ADD A WORKOUT",
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(30.dp),
+            modifier = Modifier.fillMaxWidth().padding(30.dp),
             textAlign = TextAlign.Center
         )
 
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
-            value = titleText,
-            onValueChange = { titleText = it },
-            label = { Text("Name of a Workout") }
+            value = ImeText,
+            onValueChange = { ImeText = it },
+            label = {
+                Text("Name of a Workout")
+            }
         )
 
         OutlinedTextField(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 8.dp),
-            value = weightText,
-            onValueChange = { weightText = it },
-            label = { Text("Your Weight (kg)") },
+            value = TezaText,
+            onValueChange = { TezaText = it },
+            label = {
+                Text("Your Weight (kg)")
+                    },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal)
         )
 
         Button(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 8.dp),
+            modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
             onClick = {
-                val weight = weightText.toDoubleOrNull() ?: 0.0
-                if (titleText.isNotBlank()) {
+                val weight = TezaText.toDoubleOrNull() ?: 0.0
+
+                if (ImeText.isNotBlank()) {
+
                     viewModel.viewModelScope.launch {
-                        val newWorkoutId = viewModel.addWorkout(titleText, weight).toInt()
+                        val newWorkoutId = viewModel.addWorkout(ImeText, weight).toInt()
                         localCurrentWorkoutId = newWorkoutId
-                        savedWorkoutTitle = titleText
-                        savedWorkoutWeight = weightText
-                        isWorkoutCreated = true
+                        ShranjenWorkoutIme = ImeText
+                        ShranjenWorkoutTeza = TezaText
+                        workoutnarjen = true
                         onNavigateToExercise(newWorkoutId)
                     }
                 }

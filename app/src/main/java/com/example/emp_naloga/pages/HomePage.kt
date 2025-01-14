@@ -42,18 +42,14 @@ fun HomePage(
     val workoutList by viewModel.workoutList.observeAsState()
 
     Column(
-        modifier = modifier
-            .fillMaxHeight()
-            .padding(8.dp)
+        modifier = modifier.fillMaxHeight().padding(8.dp)
     ) {
         Text(
             text = "WORKOUT LOGGER",
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(30.dp),
-            textAlign = TextAlign.Center
+            modifier = Modifier.fillMaxWidth().padding(30.dp),
+            textAlign = TextAlign.Center,
         )
 
         workoutList?.let {
@@ -81,7 +77,7 @@ fun HomePage(
 fun WorkoutItem(
     item: Workout,
     onDelete: () -> Unit,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     Row(
         modifier = Modifier

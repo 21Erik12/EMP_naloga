@@ -8,7 +8,6 @@ class Converters {
     fun fromate(date : Date) : Long{
         return date.time
     }
-
     @TypeConverter
     fun toDate(time : Long) : Date {
         return Date(time)

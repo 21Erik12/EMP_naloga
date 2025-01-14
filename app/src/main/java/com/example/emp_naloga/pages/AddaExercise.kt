@@ -32,49 +32,40 @@ fun AddaExercise(
     onBack: () -> Unit,
 ) {
     val viewModel = remember { ExerciseViewModel() }
-    var exerciseName by remember { mutableStateOf("") }
-    var exerciseWeight by remember { mutableStateOf("") }
+    var exerciseIme by remember { mutableStateOf("") }
+    var exerciseTeza by remember { mutableStateOf("") }
     var exerciseReps by remember { mutableStateOf("") }
 
     Column(
-        modifier = modifier
-            .padding(16.dp)
+        modifier = modifier.padding(16.dp)
     ) {
 
         Text(
             text = "ADD A EXERCISE",
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(30.dp),
+            modifier = Modifier.fillMaxWidth().padding(30.dp),
             textAlign = TextAlign.Center
+
         )
 
-
         OutlinedTextField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 8.dp),
-            value = exerciseName,
-            onValueChange = { exerciseName = it },
+            modifier = Modifier.fillMaxWidth().padding(bottom = 9.dp),
+            value = exerciseIme,
+            onValueChange = { exerciseIme = it },
             label = { Text("Name of exercise") }
         )
 
         OutlinedTextField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 8.dp),
-            value = exerciseWeight,
-            onValueChange = { exerciseWeight = it },
-            label = { Text("Weight of exercise (kg)") },
+            modifier = Modifier.fillMaxWidth().padding(bottom = 9.dp),
+            value = exerciseTeza,
+            onValueChange = { exerciseTeza = it },
+            label = { Text("Weight of exercise(kg)") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal)
         )
 
         OutlinedTextField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 16.dp),
+            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
             value = exerciseReps,
             onValueChange = { exerciseReps = it },
             label = { Text("Repetitions") },
@@ -98,13 +89,13 @@ fun AddaExercise(
                 modifier = Modifier.weight(1f),
                 enabled = workoutId != null,
                 onClick = {
-                    val weight = exerciseWeight.toDoubleOrNull()
+                    val weight = exerciseTeza.toDoubleOrNull()
                     val reps = exerciseReps.toIntOrNull()
 
-                    if (exerciseName.isNotBlank() && weight != null && reps != null && workoutId != null) {
-                        viewModel.addExercise(exerciseName, weight, reps, workoutId)
-                        exerciseName = ""
-                        exerciseWeight = ""
+                    if (exerciseIme.isNotBlank() && weight != null && reps != null && workoutId != null) {
+                        viewModel.addExercise(exerciseIme, weight, reps, workoutId)
+                        exerciseIme = ""
+                        exerciseTeza = ""
                         exerciseReps = ""
                     }
                 }
