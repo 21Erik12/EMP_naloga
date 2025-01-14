@@ -41,7 +41,7 @@ fun ProfilePage(
     ) {
         if (!isLoggedIn) {
             Text(
-                text = "Prijava",
+                text = "LOGIN",
                 style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold,
                 fontSize = 28.sp,
@@ -58,7 +58,7 @@ fun ProfilePage(
                 decorationBox = { innerTextField ->
                     if (tempUsername.value.isEmpty()) {
                         Text(
-                            text = "Uporabniško ime",
+                            text = "Username: ",
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                             fontSize = 18.sp
                         )
@@ -78,7 +78,7 @@ fun ProfilePage(
                 decorationBox = { innerTextField ->
                     if (tempPassword.value.isEmpty()) {
                         Text(
-                            text = "Geslo",
+                            text = "Password: ",
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                             fontSize = 18.sp
                         )
@@ -95,11 +95,11 @@ fun ProfilePage(
                     .fillMaxWidth()
                     .padding(vertical = 16.dp)
             ) {
-                Text(text = "Prijava", fontSize = 20.sp)
+                Text(text = "Login", fontSize = 20.sp)
             }
         } else {
             Text(
-                text = "Pozdravljeni $username!",
+                text = "Hello $username!",
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.Medium,
                 fontSize = 22.sp,
@@ -112,7 +112,7 @@ fun ProfilePage(
                 },
                 modifier = Modifier.padding(top = 16.dp)
             ) {
-                Text(text = "Odjava")
+                Text(text = "Logout")
             }
         }
     }

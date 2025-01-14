@@ -77,7 +77,7 @@ fun AddaWorkoutPage(
             modifier = Modifier.fillMaxWidth(),
             value = titleText,
             onValueChange = { titleText = it },
-            label = { Text("Name") }
+            label = { Text("Name of a Workout") }
         )
 
         OutlinedTextField(
@@ -86,7 +86,7 @@ fun AddaWorkoutPage(
                 .padding(top = 8.dp),
             value = weightText,
             onValueChange = { weightText = it },
-            label = { Text("Weight (kg)") },
+            label = { Text("Your Weight (kg)") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal)
         )
 

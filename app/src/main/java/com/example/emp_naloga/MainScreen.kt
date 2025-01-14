@@ -3,10 +3,10 @@ package com.example.emp_naloga
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -20,6 +20,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import com.example.emp_naloga.dataclass.NavItem
 import com.example.emp_naloga.db.Workout
 import com.example.emp_naloga.db.WorkoutViewModel
@@ -42,10 +44,10 @@ fun MainScreen(modifier: Modifier = Modifier) {
     var username by rememberSaveable { mutableStateOf("") }
 
     val navItemList = listOf(
-        NavItem("Home", Icons.Default.Home),
-        NavItem("Add", Icons.Default.Add),
-        NavItem("Exercises", Icons.Default.Info),
-        NavItem("Profile", Icons.Default.Person),
+        NavItem("Home", R.drawable.home),
+        NavItem("Add", R.drawable.add),
+        NavItem("Exercises", R.drawable.fitness),
+        NavItem("Profile", R.drawable.profile),
     )
 
     var selectedIndex by rememberSaveable { mutableStateOf(0) }
@@ -66,7 +68,9 @@ fun MainScreen(modifier: Modifier = Modifier) {
                             selectedWorkout = null
                         },
                         icon = {
-                            Icon(imageVector = navItem.icon, contentDescription = "Icon")
+                            Icon(painter = painterResource(id = navItem.icon),
+                                contentDescription = "Icon",
+                                modifier = Modifier.size(20.dp))
                         },
                         label = {
                             Text(text = navItem.label)
