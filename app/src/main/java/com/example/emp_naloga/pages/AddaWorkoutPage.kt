@@ -52,7 +52,7 @@ fun AddaWorkoutPage(
 ) {
     var ImeText by remember { mutableStateOf("") }
     var TezaText by remember { mutableStateOf("") }
-    var localCurrentWorkoutId by remember(currentWorkoutId) { mutableStateOf(currentWorkoutId) }
+    var lcWorkoutId by remember(currentWorkoutId) { mutableStateOf(currentWorkoutId) }
     var ShranjenWorkoutIme by remember { mutableStateOf("") }
     var ShranjenWorkoutTeza by remember { mutableStateOf("") }
     var workoutnarjen by remember { mutableStateOf(false) }
@@ -100,7 +100,7 @@ fun AddaWorkoutPage(
 
                     viewModel.viewModelScope.launch {
                         val newWorkoutId = viewModel.addWorkout(ImeText, weight).toInt()
-                        localCurrentWorkoutId = newWorkoutId
+                        lcWorkoutId = newWorkoutId
                         ShranjenWorkoutIme = ImeText
                         ShranjenWorkoutTeza = TezaText
                         workoutnarjen = true

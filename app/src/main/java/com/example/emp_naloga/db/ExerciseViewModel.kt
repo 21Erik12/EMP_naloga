@@ -11,7 +11,6 @@ import kotlinx.coroutines.launch
 
 class ExerciseViewModel : ViewModel() {
     private val exerciseDao = MainApplication.workoutDatabase.getExerciseDao()
-    val exerciseList: LiveData<List<Exercise>> = exerciseDao.getAllExercises()
 
     fun getExercisesForWorkout(workoutId: Int): LiveData<List<Exercise>> {
         return exerciseDao.getExercisesForWorkout(workoutId)
@@ -20,6 +19,7 @@ class ExerciseViewModel : ViewModel() {
     @RequiresApi(Build.VERSION_CODES.O)
     fun addExercise(name: String, weight: Double, repetitions: Int, workoutId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
+
             exerciseDao.addExercise(
                 Exercise(
                     name = name,
