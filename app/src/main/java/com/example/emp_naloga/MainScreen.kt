@@ -111,11 +111,8 @@ fun MainScreen(modifier: Modifier = Modifier) {
                 )
                 1 -> AddaWorkoutPage(
                     viewModel = viewModel,
-                    currentWorkoutId = trenutniWorkoutId,
                     onNavigateToExercise = { workoutId ->
-                        if (workoutId != -1) {
-                            trenutniWorkoutId = workoutId
-                        }
+                        trenutniWorkoutId = workoutId
                         poakziExercise = true
                     }
                 )

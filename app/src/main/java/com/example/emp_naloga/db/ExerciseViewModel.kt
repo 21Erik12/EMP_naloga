@@ -1,8 +1,6 @@
 package com.example.emp_naloga.db
 
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,7 +14,6 @@ class ExerciseViewModel : ViewModel() {
         return exerciseDao.getExercisesForWorkout(workoutId)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     fun addExercise(name: String, weight: Double, repetitions: Int, workoutId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
 

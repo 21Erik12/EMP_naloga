@@ -1,8 +1,5 @@
 package com.example.emp_naloga.db
 
-import android.os.Build
-import androidx.annotation.RequiresApi
-import androidx.compose.ui.Modifier
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -18,7 +15,6 @@ class WorkoutViewModel : ViewModel() {
 
     val workoutList : LiveData<List<Workout>> = WorkoutDao.getAllWorkout()
 
-    @RequiresApi(Build.VERSION_CODES.O)
     suspend fun addWorkout(title : String, weight: Double): Long {
         return viewModelScope.async(Dispatchers.IO) {
             WorkoutDao.addWorkout(Workout(

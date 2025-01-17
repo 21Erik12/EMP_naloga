@@ -1,7 +1,5 @@
 package com.example.emp_naloga.pages
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -24,7 +22,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.emp_naloga.db.ExerciseViewModel
 
-@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun AddaExercise(
     modifier: Modifier = Modifier,
@@ -87,7 +84,6 @@ fun AddaExercise(
 
             Button(
                 modifier = Modifier.weight(1f),
-                enabled = workoutId != null,
                 onClick = {
                     val weight = exerciseTeza.toDoubleOrNull()
                     val reps = exerciseReps.toIntOrNull()
